@@ -1,4 +1,4 @@
-import { getDatabase, ref, set, get, remove, Database } from 'firebase/database';
+import { getDatabase, ref, set, get, remove, Database, connectDatabaseEmulator } from 'firebase/database';
 import { app } from './init';
 import { handleFirebaseError, logFirebaseError } from './errors';
 import { toast } from 'sonner';
@@ -10,6 +10,12 @@ class DatabaseService {
     if (!this.instance) {
       try {
         this.instance = getDatabase(app);
+        
+        // Connect to emulator in development
+        if (import.meta.env.DEV) {
+          connectDatabaseEmulator(this.instance, 'localhost', 9000);
+        }
+
         console.log('Firebase Realtime Database initialized successfully');
       } catch (error) {
         logFirebaseError('Database Initialization', error);
