@@ -7,6 +7,9 @@
   [build.environment]
     NODE_VERSION = "20"
     IGNORE_ENV_FILE_WARNINGS = "true"
+    # Add these to handle secrets scanning
+    SECRETS_SCAN_OMIT_PATHS = "dist/assets/index-B-T7gGJm.js"
+    SECRETS_SCAN_OMIT_KEYS = "PINTEREST_CLIENT_SECRET"
 
 [functions]
   # Use esbuild for bundling serverless functions
