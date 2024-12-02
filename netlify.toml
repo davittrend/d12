@@ -26,6 +26,10 @@
   to = "/.netlify/functions/:splat"
   status = 200
   force = true
+  
+  [build.environment]
+IGNORE_ENV_FILE_WARNINGS = "true"
+
 
 [[headers]]
   for = "/*"
