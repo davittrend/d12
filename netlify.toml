@@ -3,7 +3,7 @@
   publish = "dist"
   functions = "netlify/functions"
 
-  # Node.js version used in build process
+  # Node.js version used in the build process
   [build.environment]
     NODE_VERSION = "20"
     IGNORE_ENV_FILE_WARNINGS = "true"
@@ -37,10 +37,10 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = """
-      default-src 'self' https://api.pinterest.com https://*.pinterest.com;
+    Content-Security-Policy = """default-src 'self' https://api.pinterest.com https://*.pinterest.com;
       script-src 'self' 'unsafe-inline' 'unsafe-eval';
       style-src 'self' 'unsafe-inline';
       img-src 'self' data: https: http:;
       font-src 'self' data:;
-      con
+      connect-src 'self' https://api.pinterest.com https://*.pinterest.com https://*.firebaseio.com https://*.googleapis.com;
+    """
