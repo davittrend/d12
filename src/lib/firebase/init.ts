@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 
 class FirebaseInitializer {
   private static instance: FirebaseApp | null = null;
+  private static initialized = false;
 
   static initialize(): FirebaseApp {
     if (!this.instance) {
@@ -24,6 +25,7 @@ class FirebaseInitializer {
           connectDatabaseEmulator(db, 'localhost', 9000);
         }
 
+        this.initialized = true;
         console.log('Firebase initialized successfully');
         return this.instance;
       } catch (error) {
@@ -42,6 +44,13 @@ class FirebaseInitializer {
     }
     return this.instance;
   }
+
+  static isInitialized(): boolean {
+    return this.initialized;
+  }
 }
 
-export const app = FirebaseInitializer.getInstance();
+// Initialize Firebase immediately
+const app = FirebaseInitializer.getInstance();
+
+export { app, FirebaseInitializer };
